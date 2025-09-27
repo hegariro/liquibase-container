@@ -222,6 +222,16 @@ Este servicio está diseñado para integrarse con arquitecturas de microservicio
 - Logging estructurado con timestamps
 - Códigos de salida estándar para CI/CD
 
+## Enlaces de interés
+
+- Documentación Liquibase Pro [Liquibase Pro](https://docs.liquibase.com/pro)
+- Documentación de liquibase en Dockerfile [Docker + Liquibase](https://docs.liquibase.com/oss/get-started/upgrade-to-liquibase-pro-4-32-with-docker)
+- Imagen de Liquibase en DockerHub [Liquibase DockerHub](https://hub.docker.com/_/liquibase)
+- Bases de datos soportadas por Liquibase [DBs soportadas](https://docs.liquibase.com/oss/integration-guide/what-databases-are-supported-by-liquibase)
+
+
 ---
 
 **Desarrollado para gestión de migraciones en arquitecturas de microservicios**
+
+
