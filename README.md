@@ -22,7 +22,7 @@ Servicio containerizado para gestión de migraciones de base de datos usando Liq
 
 ### Variables de Entorno (.env)
 
-Crea un archivo `.env` tomando como ejemple el archivo `.env.example` se debe ver más o menos así:
+Crea un archivo `.env` utilizando como referencia le archivo `.env.example`, se debe ver más o menos así:
 
 ```env
 # Database connection
@@ -52,15 +52,96 @@ LIQUIBASE_LOG_LEVEL=INFO
 
 ## 🚀 Uso
 
-### Construcción
+### Con Makefile (Recomendado)
 
+El proyecto incluye un Makefile para simplificar las operaciones más comunes:
+
+#### Comandos Básicos
 ```bash
-docker build -t my-liquibase:latest .
+# Construir imagen
+make build
+
+# Aplicar migraciones
+make update
+
+# Ver estado de migraciones
+make status
+
+# Validar changelogs
+make validate
+
+# Rollback a tag específico
+make rollback TAG=v1.0.0
 ```
 
-### Ejecución - Comandos Básicos
+#### Comandos Avanzados
+```bash
+# Rollback de N changesets
+make rollback-count COUNT=5
+
+# Ver diferencias entre BD y changelog
+make diff
+
+# Historial de migraciones ejecutadas
+make history
+
+# Sincronizar changelog sin aplicar cambios
+make changelog-sync
+
+# Generar changelog desde BD existente
+make generate-changelog
+```
+
+#### Gestión por Ambientes
+```bash
+# Desarrollo (usa .env.dev)
+make dev
+
+# Staging (usa .env.staging)  
+make staging
+
+# Producción (usa .env.prod con confirmación)
+make prod
+```
+
+#### Utilidades
+```bash
+# Ver ayuda completa
+make help
+
+# Shell interactivo en el contenedor
+make shell
+
+# Limpiar imágenes no utilizadas
+make clean
+
+# Deploy completo (build + update)
+make deploy
+
+# Verificación completa (validate + status)
+make check
+```
+
+#### Personalización de Variables
+```bash
+# Usar archivo de env específico
+make update ENV_FILE=.env.staging
+
+# Cambiar nombre e imagen
+make build IMAGE_NAME=mi-liquibase IMAGE_TAG=v2.0
+
+# Directorios personalizados
+make update CHANGELOG_DIR=./migrations DRIVERS_DIR=./jdbc-drivers
+```
+
+### Uso Directo con Docker (Alternativo)
+
+Si prefieres usar Docker directamente:
 
 ```bash
+# Construcción
+docker build -t my-liquibase:latest .
+
 # Aplicar migraciones
 docker run --rm --env-file .env \
   -v $(pwd)/changelog:/liquibase/changelog \
@@ -70,11 +151,6 @@ docker run --rm --env-file .env \
 docker run --rm --env-file .env \
   -v $(pwd)/changelog:/liquibase/changelog \
   my-liquibase:latest status
-
-# Validar changelogs
-docker run --rm --env-file .env \
-  -v $(pwd)/changelog:/liquibase/changelog \
-  my-liquibase:latest validate
 
 # Rollback por tags
 docker run --rm --env-file .env \
@@ -149,4 +225,3 @@ Este servicio está diseñado para integrarse con arquitecturas de microservicio
 ---
 
 **Desarrollado para gestión de migraciones en arquitecturas de microservicios**
-
