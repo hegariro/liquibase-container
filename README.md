@@ -36,6 +36,12 @@ LIQUIBASE_COMMAND_CHANGELOG_FILE=changelog/db.changelog-master.xml
 LIQUIBASE_LOG_LEVEL=INFO
 ```
 
+Si haces uso del Makefile, debes crear un archivo `.env` por cada ambiente; por ejemplo, para el ambiente
+de desarrollo (**develop**) debe existir el ___env file___ `.env.dev` y para el ambiente de producción
+(**prod**) debe existir el ___env file___ `.env.prod`.
+
+Para más detalles revisa los comandos de despliegue del **Makefile**.
+
 ### Estructura de Directorios
 
 ```

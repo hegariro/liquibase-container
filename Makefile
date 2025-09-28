@@ -2,7 +2,7 @@
 # Uso: make <comando> [ENV=ambiente] [TAG=version]
 
 # Variables configurables
-IMAGE_NAME ?= my-liquibase
+IMAGE_NAME ?= liquibase-my-proyect
 IMAGE_TAG ?= latest
 ENV_FILE ?= .env
 CHANGELOG_DIR ?= ./changelog
